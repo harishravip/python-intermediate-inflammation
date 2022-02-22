@@ -33,6 +33,11 @@ def daily_min(data):
     return np.min(data, axis=0)
 
 
+def daily_sd(data):
+    """Calculate the daily standard deviation of a 2D inflammation data array."""
+    return np.nanstd(data, axis=0, keepdims=False)
+
+
 def patient_normalise(data):
     """
     Normalise patient data from a 2D inflammation data array.
