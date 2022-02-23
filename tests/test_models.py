@@ -100,3 +100,28 @@ def test_patient_normalise(test, expected, expect_raises):
         npt.assert_almost_equal(patient_normalise(test), np.array(expected), decimal=2)
 
 
+def test_daily_sd_zeros():
+    """Test that std function works for an array of zeros."""
+    from inflammation.models import daily_sd
+
+    test_input = np.array([[0, 0],
+                           [0, 0],
+                           [0, 0]])
+    test_result = np.array([0, 0])
+
+    # Need to use Numpy testing functions to compare arrays
+    npt.assert_array_equal(daily_sd(test_input), test_result)
+
+
+def test_daily_sd_integers():
+    """Test that sd function works for an array of positive integers."""
+    from inflammation.models import daily_sd
+
+    test_input = np.array([[1, 1],
+                           [1, 2],
+                           [1, 3]])
+    test_result = np.array([0, 0.816496])
+
+    # Need to use Numpy testing functions to compare arrays
+    npt.assert_array_almost_equal(daily_sd(test_input), test_result)
+
